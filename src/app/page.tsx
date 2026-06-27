@@ -8,6 +8,7 @@ import SearchPanel from '@/components/SearchPanel/SearchPanel';
 import JourneyResults from '@/components/JourneyResults/JourneyResults';
 import NearbyStations from '@/components/NearbyStations/NearbyStations';
 import Favorites from '@/components/Favorites/Favorites';
+import ExploreMap from '@/components/ExploreMap/ExploreMap';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import styles from './page.module.css';
 
@@ -71,6 +72,16 @@ export default function Home() {
     };
     setExternalFrom(fakePlace);
     setExternalTo(undefined);
+  }, []);
+
+  /** マップから出発地にセット */
+  const handleMapOriginSelect = useCallback((place: Place) => {
+    setExternalFrom(place);
+  }, []);
+
+  /** マップから目的地にセット */
+  const handleMapDestinationSelect = useCallback((place: Place) => {
+    setExternalTo(place);
   }, []);
 
   /** お気に入り経路を出発・到着にセット */
@@ -174,6 +185,14 @@ export default function Home() {
                 onSelectStation={handleFavStationSelect}
                 onSelectRoute={handleFavRouteSelect}
                 refreshKey={favRefresh}
+              />
+            </section>
+
+            {/* 探索マップ */}
+            <section className={styles.section}>
+              <ExploreMap
+                onSelectOrigin={handleMapOriginSelect}
+                onSelectDestination={handleMapDestinationSelect}
               />
             </section>
           </>
