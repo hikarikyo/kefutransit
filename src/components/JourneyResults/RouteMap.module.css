@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  height: 240px; /* 固定高めに設定 */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  margin-bottom: var(--space-4);
+  /* Leafletコントロールが他の要素の上に被らないようにする */
+  z-index: 1;
+}
+
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Leaflet用の上書きスタイル（不要な影などを消す） */
+:global(.leaflet-container) {
+  background: var(--color-bg-card);
+  font-family: inherit;
+}
+
+:global(.leaflet-popup-content-wrapper) {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+:global(.leaflet-popup-content) {
+  margin: var(--space-2) var(--space-3);
+}

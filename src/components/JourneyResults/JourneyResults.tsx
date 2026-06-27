@@ -90,7 +90,7 @@ export default function JourneyResults({ result }: JourneyResultsProps) {
             />
             {expandedId === option.id && (
               <div className={styles.detailWrapper}>
-                <JourneyDetail journey={option.journey} />
+                <JourneyDetail journey={option.journey} mapData={option.map} />
               </div>
             )}
           </div>

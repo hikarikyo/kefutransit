@@ -1,11 +1,13 @@
 'use client';
 
-import type { Journey, Leg, TransitLeg, WalkLeg } from '@/lib/types';
+import type { GuidanceOption, Journey, Leg, TransitLeg, WalkLeg } from '@/lib/types';
 import { secsToTimeString, secsToMinutes } from '@/lib/timeUtils';
+import RouteMap from './RouteMap';
 import styles from './JourneyDetail.module.css';
 
 interface JourneyDetailProps {
   journey: Journey;
+  mapData?: GuidanceOption['map'];
 }
 
 /** モードアイコン */
@@ -24,32 +26,40 @@ function getModeEmoji(mode: string): string {
   }
 }
 
-export default function JourneyDetail({ journey }: JourneyDetailProps) {
+export default function JourneyDetail({ journey, mapData }: JourneyDetailProps) {
   return (
     <div className={styles.container}>
-      {journey.legs.map((leg, index) => (
-        <div key={index}>
-          {leg.kind === 'transit' ? (
-            <TransitLegView leg={leg} />
-          ) : (
-            <WalkLegView leg={leg} />
-          )}
-          {/* 乗換待ち時間 */}
-          {index < journey.legs.length - 1 && (() => {
-            const nextLeg = journey.legs[index + 1];
-            const waitSecs = nextLeg.departureSecs - leg.arrivalSecs;
-            if (waitSecs > 0 && leg.kind === 'transit' && nextLeg.kind === 'transit') {
-              return (
-                <div className={styles.waitTime}>
-                  <span className={styles.waitIcon}>⏳</span>
-                  <span>乗換 {secsToMinutes(waitSecs)}</span>
-                </div>
-              );
-            }
-            return null;
-          })()}
-        </div>
-      ))}
+      {/* 経路マップ（データがある場合のみ） */}
+      {mapData && (
+        <RouteMap mapData={mapData} />
+      )}
+
+      {/* タイムライン */}
+      <div className={styles.timeline}>
+        {journey.legs.map((leg, index) => (
+          <div key={index}>
+            {leg.kind === 'transit' ? (
+              <TransitLegView leg={leg} />
+            ) : (
+              <WalkLegView leg={leg} />
+            )}
+            {/* 乗換待ち時間 */}
+            {index < journey.legs.length - 1 && (() => {
+              const nextLeg = journey.legs[index + 1];
+              const waitSecs = nextLeg.departureSecs - leg.arrivalSecs;
+              if (waitSecs > 0 && leg.kind === 'transit' && nextLeg.kind === 'transit') {
+                return (
+                  <div className={styles.waitTime}>
+                    <span className={styles.waitIcon}>⏳</span>
+                    <span>乗換 {secsToMinutes(waitSecs)}</span>
+                  </div>
+                );
+              }
+              return null;
+            })()}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
