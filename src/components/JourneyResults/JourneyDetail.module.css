@@ -1,0 +1,182 @@
+.container {
+  padding: var(--space-4) 0;
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+
+/* 乗車区間 */
+.transitLeg {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 駅行 */
+.stop {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-height: 36px;
+}
+
+.timeCol {
+  width: 52px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: var(--space-3);
+  padding-top: 2px;
+}
+
+.stopTime {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.timeLabel {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+}
+
+.lineCol {
+  width: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 3px solid;
+  background: var(--color-bg-card);
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 3px;
+  flex: 1;
+  min-height: 8px;
+  border-radius: 1.5px;
+}
+
+.walkLine {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-text-muted) 0px,
+    var(--color-text-muted) 4px,
+    transparent 4px,
+    transparent 8px
+  ) !important;
+}
+
+.infoCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 1px;
+  min-width: 0;
+}
+
+.stopName {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.platform {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  width: fit-content;
+}
+
+/* 路線情報 */
+.routeInfo {
+  display: flex;
+  gap: 0;
+  padding: var(--space-2) 0;
+}
+
+.routeDetail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-input);
+  border-radius: var(--radius-md);
+  margin-left: var(--space-2);
+  flex: 1;
+}
+
+.routeEmoji {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.routeText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.routeName {
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.headsign {
+  font-size: var(--font-xs);
+  color: var(--color-text-secondary);
+}
+
+.legDuration {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+}
+
+/* 乗換待ち時間 */
+.waitTime {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  margin-left: 72px;
+  font-size: var(--font-xs);
+  color: var(--color-warning);
+}
+
+.waitIcon {
+  font-size: 12px;
+}
+
+/* 徒歩区間 */
+.walkLeg {
+  display: flex;
+  flex-direction: column;
+}
+
+.walkInfo {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+}
+
+.walkFrom {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

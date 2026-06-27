@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: fadeInUp var(--duration-slow) var(--ease-out);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.routeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.routeTitle {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.favButton {
+  font-size: 22px;
+  color: var(--color-warning);
+  transition: transform var(--duration-fast) var(--ease-bounce);
+  flex-shrink: 0;
+}
+
+.favButton:hover {
+  transform: scale(1.2);
+}
+
+.routeMeta {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+}
+
+/* 通知 */
+.notices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.notice {
+  font-size: var(--font-xs);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+}
+
+.notice_warning {
+  background: rgba(255, 184, 77, 0.1);
+  color: var(--color-warning);
+}
+
+/* カードリスト */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cardWrapper {
+  animation: fadeInUp var(--duration-slow) var(--ease-out) backwards;
+}
+
+.detailWrapper {
+  margin-top: -1px;
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--gradient-card);
+  border: 1px solid var(--color-primary);
+  border-top: none;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
