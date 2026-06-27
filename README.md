@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚃 KefuTransit — 乗り換え検索
 
-## Getting Started
+**KefuTransit** は、直感的でUXを重視した日本の公共交通・乗り換え検索Webアプリケーションです。  
+[Transit API](https://api.transit.ls8h.com/) を利用しており、高速なオートコンプリートや、最適な経路の比較・提案を行います。
 
-First, run the development server:
+## ✨ 特徴
+
+- **1画面完結のUI**: 画面遷移なしで検索から結果詳細の確認までシームレスに行えます。
+- **高速なオートコンプリート**: 駅名だけでなく、バス停やスポット名からの検索もサポート。
+- **リッチな経路結果**: 乗換回数や運賃、路線カラーを視覚的にわかりやすく表示。おすすめルートや最安ルートなどの比較も簡単です。
+- **現在地周辺検索**: ワンタップで現在地付近の駅やバス停を検索して出発地に設定できます。
+- **お気に入り機能**: 頻繁に使う経路や駅をブラウザに保存（ローカルストレージ）し、すぐに呼び出せます。
+- **PWA対応**: スマートフォンのホーム画面に追加することで、ネイティブアプリのように利用できます（オフラインフォールバック対応）。
+- **ダークモード対応**: デバイスのシステムテーマに合わせて、美しいダークモードとライトモードを自動で切り替えます。
+
+## 🛠️ 技術スタック
+
+- **フレームワーク**: [Next.js](https://nextjs.org/) (App Router)
+- **言語**: TypeScript
+- **スタイリング**: Vanilla CSS (CSS変数を用いたカスタムデザインシステム)
+- **API**: [Transit API](https://api.transit.ls8h.com/)
+- **デプロイ**: Vercel (無料枠で完全動作)
+
+## 🚀 開発の始め方
+
+リポジトリをクローンした後、以下のコマンドを実行してください。
 
 ```bash
+# 依存関係のインストール
+npm install
+
+# 開発用サーバーの起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) にアクセスするとアプリを確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 ビルドとデプロイ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Vercel のダッシュボードからこのリポジトリをインポートするだけで、すぐに本番環境にデプロイできます。  
+Transit API は CORS が開放されているため、サーバーサイドでのAPIプロキシや環境変数の設定は不要です。完全にクライアントサイドから直接呼び出して動作します。
 
-## Learn More
+```bash
+# 手動でプロダクションビルドを行う場合
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 ライセンスとデータについて
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 交通データは各事業者の GTFS / ODPT 等に基づいています。
+- データの利用条件等については、[Transit API の利用規約・免責事項](https://transit.ls8h.com/terms)をご確認ください。
